@@ -46,7 +46,7 @@ class UserApiView(APIView):
 
 class UserDetailsView(APIView):
     
-    def get_object(sel, user_id):
+    def get_object(self, user_id):
         try:
             return User.objects.get(id=user_id)
         except User.DoesNotExist:
@@ -77,6 +77,10 @@ class UserDetailsView(APIView):
                 {"message":"Usuário não encontrado"},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+        if not request.data.get('login') or not request.data.get('data_nascimento'):
+            return Response({'error': 'login e data_nascimento devem ser preenchidos'}, status=status.HTTP_400_BAD_REQUEST)
+
 
         data = {
             'login': request.data.get('login'),
