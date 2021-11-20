@@ -1,13 +1,8 @@
 Databases
 
 venv_productapi
-
 venv_userapi
-
-userproject/**.md
-productproject/**.md
-
-
+venv_scapping
 
 **/**/__pycache__
 
