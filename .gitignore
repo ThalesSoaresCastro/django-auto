@@ -10,3 +10,5 @@ productproject/**.md
 
 
 **/**/__pycache__
+
+**/**/files
