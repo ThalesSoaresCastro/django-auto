@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'userapi.apps.UserapiConfig',
     'corsheaders',
+    "django_apscheduler",
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,18 @@ CORS_ORIGIN_WHITELIST = (
 
 
 ROOT_URLCONF = 'userproject.urls'
+
+
+SCHEDULER_CONFIG = {
+    "apscheduler.jobstores.default": {
+        "class": "django_apscheduler.jobstores:DjangoJobStore"
+    },
+    'apscheduler.executors.processpool': {
+        "type": "threadpool"
+    },
+}
+SCHEDULER_AUTOSTART = True
+
 
 TEMPLATES = [
     {

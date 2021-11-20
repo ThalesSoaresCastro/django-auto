@@ -1,7 +1,24 @@
 from pathlib import Path
 import xlsxwriter
+import datetime
+
+from userapi.models import User
+from userapi.api.serializers import UserSerializer
 
 principal_dir = 'userapi/'
+
+
+def start_create_file():
+    
+    cria_diretorio('files')
+    all_users = User.objects.all()
+    serializer_user = UserSerializer(all_users, many=True)
+ 
+    xlsx_file_create('files', cria_arquivo_xlsx(),serializer_user.data )
+
+def cria_arquivo_xlsx():
+        name_file = 'usersbackup-'
+        return name_file+datetime.datetime.now().isoformat().split('T')[0]
 
 def cria_diretorio(name):
     if not Path(principal_dir+name).is_dir():
