@@ -7,3 +7,9 @@ venv_scapping
 **/**/__pycache__
 
 **/**/files
+
+**.zip
+
+/**/**/.dockerignore
+/**/**/Dockerfile
+
