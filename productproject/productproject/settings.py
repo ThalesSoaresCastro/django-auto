@@ -91,6 +91,7 @@ DATABASES = {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'productapi',
         'HOST':'127.0.0.1',
+        #'HOST':'mysqldb',
         'PORT':5851,
         'USER':'root',
         'PASSWORD':'mysql'

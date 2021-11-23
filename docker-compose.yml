@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  mongodbuserproject:
+  mongodb:
     image : mongo
-    container_name: mongodbuserproject
+    container_name: mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mongodb
       - MONGO_INITDB_ROOT_PASSWORD=mongodb
@@ -10,17 +10,17 @@ services:
     volumes:
       - ./Databases/mongodb/database:/data/db
     ports:
-      - 5850:27017
+      - "5850:27017"
     restart: unless-stopped
-
-  mysqldbproductproject:
+  
+  mysqldb:
     image: mysql
-    container_name: mysqldbproductproject
+    container_name: mysqldb
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
       - MYSQL_DATABASE=productapi
     ports:
-      - 5851:3306
+      - "5851:3306"
     volumes: 
       - ./Databases/mysql/database:/var/lib/mysql

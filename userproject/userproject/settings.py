@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-hqu+e!_d#1v#s#aa*uzl!o13r=&*er5tq2%4=w(3aj5m%=fxx&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -106,10 +106,12 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'userapi',
         'CLIENT': {
-            'host': '127.0.0.1',
+            'host': 'localhost',
             'port': 5850,
             'username': 'mongodb',
-            'password':'mongodb'
+            'password':'mongodb',
+            'authSource': 'admin',
+            'authMechanism': 'SCRAM-SHA-1',
         }
     }
 }
