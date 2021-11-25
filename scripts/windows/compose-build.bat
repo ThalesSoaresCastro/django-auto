@@ -1,0 +1,1 @@
+docker-compose -p django-auto-stack  -f docker-compose.yml  up --build -d

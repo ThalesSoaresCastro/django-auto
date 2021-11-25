@@ -98,6 +98,9 @@ WSGI_APPLICATION = 'userproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 DATABASES = {
     'default': {
@@ -106,12 +109,19 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'userapi',
         'CLIENT': {
-            'host': 'localhost',
-            'port': 5850,
-            'username': 'mongodb',
-            'password':'mongodb',
+            #'host': 'localhost',
+            #'port': 5850,
+            #'username': 'mongodb',
+            #'password':'mongodb',
+            #'authSource': 'admin',
+            #'authMechanism': 'SCRAM-SHA-1',
+            'host': os.getenv('DB_HOST','userdb'),
+            'port': os.getenv('DB_PORT'),
+            'username': os.getenv('DB_USER'),
+            'password':os.getenv('DB_PASSWORD'),
             'authSource': 'admin',
             'authMechanism': 'SCRAM-SHA-1',
+            
         }
     }
 }

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2vg-ozzu!6iolfbg!y_0lm+=7a8zk=ia#=z2(^wh7qzj7$q#(1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,17 +84,25 @@ WSGI_APPLICATION = 'productproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE':'django.db.backends.mysql',
-        'NAME':'productapi',
-        'HOST':'127.0.0.1',
+        #'NAME':'productapi',
+        #'HOST':'127.0.0.1',
         #'HOST':'mysqldb',
-        'PORT':5851,
-        'USER':'root',
-        'PASSWORD':'mysql'
+        #'PORT':3306,
+        #'USER':'root',
+        #'PASSWORD':'mysql',
+        'HOST':os.getenv('DB_HOST','productdb'),
+        #'HOST':os.environ['DB_HOST'],
+        'NAME':os.getenv('DB_NAME'),
+        'PORT':os.getenv('DB_PORT'),
+        'USER':os.getenv('DB_USER'),
+        'PASSWORD':os.getenv('DB_PASSWORD'),
     }
 }
 
