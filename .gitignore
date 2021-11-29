@@ -16,3 +16,5 @@ venv_scapping
 /**/**/.dockerignore
 /**/**/Dockerfile
 
+
+/anotations
