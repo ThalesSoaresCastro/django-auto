@@ -1,1 +1,1 @@
-.\scripts\windows\compose-init.bat  & .\scripts\windows\migrations.bat productapi & .\scripts\windows\migrate.bat productapi .\scripts\windows\migrations.bat userapi & .\scripts\windows\migrate.bat userapi & .\scripts\windows\compose-down.bat & .\scripts\windows\compose-build.bat
+.\scripts\windows\compose-init.bat  & .\scripts\windows\migrations.bat productapi & .\scripts\windows\migrate.bat productapi & .\scripts\windows\migrations.bat userapi userapi & .\scripts\windows\migrate.bat userapi userapi & .\scripts\windows\compose-down.bat & .\scripts\windows\compose-build.bat

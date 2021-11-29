@@ -1,44 +1,4 @@
-version: "3.8"
 services:
-  userdb:
-    image: mongo
-    container_name: userdb
-    env_file: ./.env
-    environment:
-      #- MONGO_INITDB_ROOT_USERNAME=mongodb
-      #- MONGO_INITDB_ROOT_PASSWORD=mongodb
-      #- MONGO_INITDB_DATABASE=userapi
-      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-      - MONGO_INITDB_DATABASE=$MONGO_DATABASE
-    volumes:
-      - ./Mongodb:/data/db
-    ports:
-      - $MONGO_LOCAL_PORT:$MONGO_DOCKER_PORT
-    restart: unless-stopped
-
-  userapi:
-    container_name: userapi
-    depends_on:
-      - userdb
-    build: ./userproject
-    restart: unless-stopped
-    env_file: ./.env
-    command: python manage.py runserver
-    ports:
-      - $USERAPI_LOCAL_PORT:$USERAPI_DOCKER_PORT
-    environment:
-      - DB_USER=$MONGO_USER
-      - DB_PASSWORD=$MONGO_PASSWORD
-      - DB_NAME=$MONGO_DATABASE
-      - DB_PORT=$MONGO_DOCKER_PORT
-      - DB_HOST=$USERAPI_DBHOST
-    #stdin_open: true
-    #tty: true
-    volumes:
-      - ./userproject:/userapp
-    links:
-      - userdb:userdb
 
   productdb:
     image: mysql:5.7
@@ -75,6 +35,49 @@ services:
       - ./productproject:/productapp
     links:
       - productdb:productdb
+
+
+  userdb:
+    image: mongo
+    container_name: userdb
+    env_file: ./.env
+    environment:
+      #- MONGO_INITDB_ROOT_USERNAME=mongodb
+      #- MONGO_INITDB_ROOT_PASSWORD=mongodb
+      #- MONGO_INITDB_DATABASE=userapi
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+      - MONGO_INITDB_DATABASE=$MONGO_DATABASE
+    volumes:
+      - ./Mongodb:/data/db
+    ports:
+      - $MONGO_LOCAL_PORT:$MONGO_DOCKER_PORT
+    restart: unless-stopped
+  userapi:
+    container_name: userapi
+    depends_on:
+      - userdb
+    build: ./userproject
+    restart: unless-stopped
+    env_file: ./.env
+    command: 'python manage.py runserver'
+    ports:
+      - $USERAPI_LOCAL_PORT:$USERAPI_DOCKER_PORT
+    environment:
+      - DB_USER=$MONGO_USER
+      - DB_PASSWORD=$MONGO_PASSWORD
+      - DB_NAME=$MONGO_DATABASE
+      - DB_PORT=$MONGO_DOCKER_PORT
+      - DB_HOST=$USERAPI_DBHOST
+    #stdin_open: true
+    #tty: true
+    volumes:
+      - ./userproject:/userapp
+    links:
+      - userdb:userdb
+    expose: 
+      - '5852'
+
 volumes:
   Mongodb:
   Mysql:

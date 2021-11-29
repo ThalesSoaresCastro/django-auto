@@ -1,1 +1,1 @@
-docker-compose -p django-auto-stack exec %1 python manage.py migrate
+docker-compose -p django-auto-stack exec %1 python manage.py migrate %2

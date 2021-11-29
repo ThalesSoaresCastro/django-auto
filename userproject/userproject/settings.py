@@ -57,9 +57,9 @@ MIDDLEWARE = [
 
 
 
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8081',
+    'http://localhost',
 )
 
 
@@ -107,7 +107,7 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'djongo',
-        'NAME': 'userapi',
+        'NAME': os.getenv('DB_NAME'),
         'CLIENT': {
             #'host': 'localhost',
             #'port': 5850,
@@ -116,7 +116,7 @@ DATABASES = {
             #'authSource': 'admin',
             #'authMechanism': 'SCRAM-SHA-1',
             'host': os.getenv('DB_HOST','userdb'),
-            'port': os.getenv('DB_PORT'),
+            'port': int(os.getenv('DB_PORT')),
             'username': os.getenv('DB_USER'),
             'password':os.getenv('DB_PASSWORD'),
             'authSource': 'admin',

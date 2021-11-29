@@ -9,6 +9,7 @@ def main():
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'productproject.settings')
     runserver.default_port="5853"
+    runserver.default_addr="0.0.0.0"
     
     try:
         from django.core.management import execute_from_command_line
